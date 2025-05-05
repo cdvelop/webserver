@@ -1,0 +1,204 @@
+:root {
+	/* Variables adapted from navbar-mobile-right/css/add-root.css and common usage */
+	--col-pri: #141414;
+	--col-sec: #23232e;
+	--col-ter: #3f3f50;
+	--col-non: #e7e7ff;
+	--col-oct: #cbcbfa;
+	--col-gra: #e9e9e9; /* From add-root.css */
+
+	--font-size: 1.6rem; /* Example value */
+	--menu-size: 5rem; /* Example value from navbar.css */
+	--border-radius: 8px; /* Example value */
+	--speed: 600ms; /* Example value from navbar.css */
+}
+
+html {
+    font-size: 62.5%; /* Set base font size for rem units */
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0; /* Remove default body margin */
+    padding: 0;
+    font-family: sans-serif; /* Basic font */
+    font-size: var(--font-size);
+    background-color: var(--col-pri);
+    color: var(--col-non);
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Styles from navbar.css needed for nav layout */
+.menu-container {
+	position: fixed;
+	background-color: var(--col-sec);
+	transition: width var(--speed) ease;
+	overflow: hidden; /* Hide text initially, changed from scroll */
+	z-index: 3;
+}
+
+.navbar-container {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+}
+
+.navbar-item {
+	width: 100%;
+}
+
+.navbar-item:last-child {
+	margin-top: auto;
+}
+
+.navbar-link {
+	display: flex;
+	align-items: center;
+	height: var(--menu-size);
+	color: var(--col-non);
+	text-decoration: none;
+	filter: grayscale(100%) opacity(0.7);
+	transition: var(--speed);
+}
+
+.navbar-link:hover {
+	filter: grayscale(0%) opacity(1);
+	background: var(--col-pri);
+	color: var(--col-oct);
+}
+
+.link-text {
+	display: none;
+	margin-left: 1rem;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.navbar-link svg {
+	width: 2rem;
+	min-width: 2rem;
+	margin: 0 1.5rem;
+}
+
+/* Styles from slider-panel.css */
+/************** BASE (Desktop First Approach) ***************/
+
+main { /* Container for the sliding panels */
+	margin-left: var(--menu-size); /* Space for the collapsed nav */
+    position: relative; /* Needed for absolute positioning of panels */
+    width: calc(100% - var(--menu-size));
+    height: 100vh;
+    overflow: hidden; /* Crucial to hide non-target panels */
+    transition: margin-left var(--speed) ease; /* Smooth transition when nav expands */
+}
+
+.slider_panel {
+	border: .1vw solid var(--col-gra);
+	width: 100%;
+	height: 100%; /* Fill the main container */
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #fff; /* Default background */
+    color: #333; /* Text color for panels */
+	margin-left: 100%; /* Start off-screen to the right */
+	z-index: 2;
+	transition: margin-left .6s ease-in-out; /* Only transition margin */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow vertical scroll within panel */
+}
+
+/* Active slider_panel */
+.slider_panel:target {
+	margin-left: 0%; /* Slide into view */
+	background-color: #eee; /* Different background for active */
+    z-index: 1; /* Ensure target is visually above others if needed, though margin handles positioning */
+}
+
+/* Non-Mobile Styles (Desktop) */
+@media only screen and (min-width: 641px) {
+	.menu-container {
+		top: 0;
+		width: var(--menu-size);
+		height: 100vh;
+	}
+
+	.menu-container:hover {
+		width: 16rem; /* Expand width on hover */
+	}
+
+    .menu-container:hover ~ main {
+        margin-left: 16rem; /* Push main content when nav expands */
+    }
+
+	.menu-container:hover .link-text {
+		display: inline; /* Show text on hover */
+	}
+
+	.menu-container:hover .navbar-link svg {
+		margin-left: 1rem; /* Adjust icon margin */
+	}
+}
+
+/*********** MOBILE Styles **************/
+@media only screen and (max-width: 640px) {
+	body {
+        padding-bottom: var(--menu-size); /* Add padding for bottom nav */
+    }
+
+    main {
+        margin-left: 0; /* No left margin */
+        width: 100%;
+        height: calc(100vh - var(--menu-size)); /* Adjust height for bottom nav */
+        margin-top: 0; /* Ensure no top margin */
+    }
+
+	.menu-container {
+        top: auto; /* Remove fixed top */
+		bottom: 0; /* Position at the bottom */
+		width: 100vw;
+		height: var(--menu-size);
+        border-top: 1px solid var(--col-ter); /* Add a top border */
+	}
+
+	.navbar-container {
+		flex-direction: row; /* Arrange items horizontally */
+	}
+
+    .navbar-item {
+        flex-grow: 1; /* Allow items to fill space */
+    }
+
+	.navbar-link {
+		justify-content: center; /* Center icon */
+	}
+
+    .link-text {
+        display: none !important; /* Always hide text on mobile */
+    }
+
+	.slider_panel {
+		width: 100vw;
+		height: 100%; /* Fill the adjusted main container height */
+		margin-left: 100%; /* Start off-screen right */
+        margin-top: 0; /* No top margin */
+        top: 0;
+        left: 0;
+	}
+
+	.slider_panel:target {
+		margin-left: 0%; /* Slide in from right */
+	}
+}
+
+
