@@ -7,9 +7,9 @@ import (
 func main() {
 
 	// Servir archivos estáticos solo si la ejecución es donde esta la carpeta public
-	// fs := http.FileServer(http.Dir("./public"))
+	fs := http.FileServer(http.Dir("./public"))
 	// servir independiente de la ruta del proyecto
-	fs := http.FileServer(http.Dir("c:/Users/Cesar/Classes/webserver/web/public"))
+	// fs := http.FileServer(http.Dir("c:/Users/SU_NOMBRE/XXXX/webserver/web/public"))
 
 	// ruta a servir publica
 	http.Handle("/", fs)
