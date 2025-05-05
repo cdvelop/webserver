@@ -107,11 +107,10 @@ main { /* Container for the sliding panels */
 	height: 100%; /* Fill the main container */
 	position: absolute;
 	top: 0;
-	left: 0;
-	background-color: #fff; /* Default background */
+	left: 0;	background-color: #fff; /* Default background */
     color: #333; /* Text color for panels */
 	margin-left: 100%; /* Start off-screen to the right */
-	z-index: 2;
+	/* z-index: 2; Removed for simplicity */
 	transition: margin-left .6s ease-in-out; /* Only transition margin */
     padding: 20px;
     box-sizing: border-box;
@@ -122,7 +121,7 @@ main { /* Container for the sliding panels */
 .slider_panel:target {
 	margin-left: 0%; /* Slide into view */
 	background-color: #eee; /* Different background for active */
-    z-index: 1; /* Ensure target is visually above others if needed, though margin handles positioning */
+    /* z-index: 1; Removed for simplicity */
 }
 
 /* Non-Mobile Styles (Desktop) */
