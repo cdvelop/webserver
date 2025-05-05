@@ -1,19 +1,26 @@
-package main
+package gatitos
 
 import (
 	"fmt"
 	"net/http"
 )
 
-func gatitosHandler(w http.ResponseWriter, r *http.Request) {
+func ManejadorGatitos(w http.ResponseWriter, r *http.Request) {
 	// Obtener los parámetros de la URL
 	query := r.URL.Query()
 	// Obtener el valor del parámetro 'name_cat'
-	nameCat := query.Get("name_cat")
+	name_cat := query.Get("name_cat")
+
+	// obtener el apelido del gatito
+	last_name := query.Get("last_name")
 
 	// Si 'name_cat' no está presente, puedes asignar un valor por defecto
-	if nameCat == "" {
-		nameCat = "un gatito sin nombre"
+	if name_cat == "" {
+		name_cat = "un gatito sin nombre"
+	}
+
+	if last_name == "" {
+		last_name = "un gatito sin apellido"
 	}
 
 	// Usar el valor en la respuesta
@@ -26,8 +33,9 @@ func gatitosHandler(w http.ResponseWriter, r *http.Request) {
 	</head>
 	<body>
 		<img src="img/gatito.jpg" alt="Gatito" width="200" />
-		<h1>API - Nombre del gatito: %s</h1>
+		<h1>Nombre del gatito: %s</h1>
+		<h1>Apellido: %s</h1>
 	</body>
 	</html>
-	`, nameCat) // Incluir la variable nameCat en el HTML
+	`, name_cat, last_name) // Incluir la variable nameCat en el HTML
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"webserver/web/gatitos"
 )
 
 func main() {
@@ -15,7 +16,7 @@ func main() {
 	http.Handle("/", fs)
 
 	// ruta a api
-	http.HandleFunc("/gatitos", gatitosHandler)
+	http.HandleFunc("/gatitos", gatitos.ManejadorGatitos)
 
 	// mensaje consola
 	print("Servidor iniciado en http://localhost:8080")
