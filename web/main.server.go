@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -16,26 +15,10 @@ func main() {
 	http.Handle("/", fs)
 
 	// ruta a api
-	http.HandleFunc("/api1", Api)
+	http.HandleFunc("/gatitos", gatitosHandler)
 
 	// mensaje consola
 	print("Servidor iniciado en http://localhost:8080")
 	// inicia servidor
 	http.ListenAndServe(":8080", nil)
-}
-
-func Api(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Pagina AIEP</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<img src="/static/pino.jpg" alt="Logo AIEP" width="100" />
-		<h1>API</h1>
-	</body>
-	</html>
-	`)
 }
