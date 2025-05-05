@@ -1,0 +1,44 @@
+/************** DESKTOP FIRST ***************/
+
+.slider_panel {
+	border: .1vw solid var(--col-gra);
+	
+	/* top: 0; */
+	width: 92%;
+	height: 80vh;
+	position: absolute;
+	background-color: #000;
+	margin-left: -100%;
+	z-index: 2;
+	-webkit-transition: all .6s ease-in-out;
+	-moz-transition: all .6s ease-in-out;
+	-o-transition: all .6s ease-in-out;
+	-ms-transition: all .6s ease-in-out;
+	transition: all .6s ease-in-out;
+}
+
+/*  color slider_panel */
+.slider_panel:target {
+	margin-left: 0%;
+	background-color: var(--col-ter);
+}
+
+
+
+/*********** MOBILE  **************/
+@media only screen and (max-width: 640px) {
+	.slider_panel {
+		width: 100vw;
+		margin-left: 0vh;
+		margin-top: -117vh;
+	}
+	
+	.slider_panel:target {
+		/* top: var(--menu-size); */
+		margin-top: 0vh;
+		height: 97vh;
+		/* background-color: var(--col-sec); */
+	}
+
+
+}

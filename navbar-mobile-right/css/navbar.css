@@ -1,0 +1,141 @@
+/* /*********** MOBILE *********** */
+:root {
+ --menu-size:7vh;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    max-height: 100vh;
+    height: 100vh;
+}
+
+/* MAIN NAVBAR */
+.menu-container{
+    z-index: 3;
+    top: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: var(--menu-size);
+    background-color: var(--col-gra);
+    text-decoration: none;
+    transition: 0.5s all ease;
+}
+
+/* Opción seleccionada */
+#menu-container > ul > li > a:target { 
+    background:var(--col-hov);
+    color:var(--col-ter);
+   
+}
+
+.navbar-container{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.logo{
+    display: none;
+}
+
+/* ITEM */
+.navbar-item{
+    width:100%;
+}
+
+.navbar-link{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;    
+height: var(--menu-size);
+text-decoration: none;
+transition: 0.5s all ease;
+}
+
+
+.fa-primary{
+    color: var(--col-sec);
+    height: 30px;
+    transition: 0.6 all ease;
+}
+
+.link-text {
+    display: none;
+}
+
+/* MAIN  */
+main {
+    margin-top: 70px;
+}
+
+/************ DESKTOP ************/
+@media only screen and (min-width:600px) {
+
+
+    main{
+        margin-top: 0px;
+        /* padding: 0; */
+    }
+
+    .menu-container{
+        top: 0;
+        width: 70px;
+        height: 100vh;
+        transition: 0.5s all ease;
+        right: 0;
+    }
+
+    .menu-container:hover{
+        width: 200px;
+    }
+
+
+
+    .menu-container:hover .link-text{
+        display: block;
+    }
+
+    .navbar-container{
+        flex-direction: column;
+        /* justify-content: initial; */
+        /* justify-content: end; */
+    }
+
+    .navbar-item:last-child{
+        margin-top: auto;
+    }
+
+    .navbar-link{
+        flex-direction: row;
+        justify-content: initial;
+        height: 80px;
+    }
+
+  
+    .navbar-link svg {
+        margin:0 15px;
+    }
+
+    .navbar-link:hover{
+        background-color: var(--col-ter);
+    }
+
+    .link-text{
+        color: var(--col-cua);
+    }
+
+    .fa-primary{
+        height: 30px;
+    }
+
+    
+}

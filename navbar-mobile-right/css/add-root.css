@@ -1,0 +1,10 @@
+:root {
+    --col-pri: #ffffff;   
+    --col-sec: #3f88bf;  
+    --col-ter: #c2c1c1;   
+    --col-cua: #000000;   
+    --col-gra: #e9e9e9;   
+    --col-hov: #ff9300;   
+    --col-ok:  #aadaff7c; 
+    --col-err: #f20707; 
+}
